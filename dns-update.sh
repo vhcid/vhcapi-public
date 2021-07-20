@@ -4,6 +4,7 @@
 #               VHC VDT              #
 #         VHC DEVELOPING TEAM        #
 ######################################
+
 prefix="VHC DNS Security" #Silahkan Diganti kalo butuh :)
 auth_email="email@cloudflare.mu" #Email Yang Kamu Registrasikan Untuk Panel Cloudflare mu!
 auth_method="token" #gausah diganti ler ini bawaan!
