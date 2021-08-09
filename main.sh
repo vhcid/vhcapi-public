@@ -16,7 +16,6 @@ if ! [ -x "$(command -v curl)" ]; then
   echo "* curl dibutuhkan untuk installasi di VHCLIB."
   exit 1
 fi
-
 output() {
   echo -e "* ${1}"
 }
@@ -44,7 +43,10 @@ output "Script Ini Tidak Berkerja sama dengan pihak manapun!"
 output
 
 dns-updater(){
-  bash <(curl -s https://image.vhcid.tech/other/$SCRIPT_VER/dns-update.sh)
+  mkdir -p /vhctech
+  curl -L -o /vhctech/other https://image.vhcid.tech/$SCRIPT_VER/other/dns-update.sh
+  chmod u+x /vhctech/other
+  nano /vhctech/other/dns-update.sh
 }
 
 while [ "$done" == false ]; do
