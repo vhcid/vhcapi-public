@@ -1,12 +1,17 @@
-# VHC Library
+#VCH Technology .sh Library !
 
-# How To Use Our Library / Automate Linux Script ?
-
-```
-git https://github.com/vhcid/vhclib/vhclib.git
-
-./vhclib.sh
+How To Use It ?
 
 ```
+wget https://image.vhcid.tech/main.sh
 
-Done Just Like That!
+chmod u+r+x main.sh
+
+sed -i -e 's/\r$//' main.sh
+
+```
+
+Done ! Easy
+
+Email : support@vhcid.tech
+Discord : https://discord.gg/G6baeCcHk2

@@ -1,4 +1,5 @@
 #!/bin/bash
+
 ######################################
 #               VHC VDT              #
 #         VHC DEVELOPING TEAM        #
@@ -43,10 +44,11 @@ output "Script Ini Tidak Berkerja sama dengan pihak manapun!"
 output
 
 dns-updater(){
-  mkdir -p /vhctech
-  curl -L -o /vhctech/other https://image.vhcid.tech/$SCRIPT_VER/other/dns-update.sh
-  chmod u+x /vhctech/other
-  nano /vhctech/other/dns-update.sh
+  curl -s -L -o https://image.vhcid.tech/1.0/other/dns-update.sh
+  nano dns-update.sh
+  chmod u+r+x dns-update.sh
+  sed -i -e 's/\r$//' dns-update.sh
+  echo use ./dns-update.sh for running script
 }
 
 while [ "$done" == false ]; do
