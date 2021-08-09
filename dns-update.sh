@@ -1,5 +1,4 @@
 #!/bin/bash
-
 ######################################
 #               VHC VDT              #
 #         VHC DEVELOPING TEAM        #
