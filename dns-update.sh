@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 ######################################
 #               VHC VDT              #
@@ -9,7 +9,7 @@ prefix="VHC DNS Security" #Silahkan Diganti kalo butuh :)
 auth_email="email@cloudflare.mu" #Email Yang Kamu Registrasikan Untuk Panel Cloudflare mu!
 auth_method="token" #gausah diganti ler ini bawaan!
 auth_key="00000000000000000000000000000000000" #auth key bisa di dapat dengan cara ke dashboard => API => Get Your API token => API Tokens => Api keys => Global API Key => Views
-zone_identifier="0000000000000000000000000000000"
+zone_identifier="0000000000000000000000000000000" #Zone ID bisa di dapatkan di panel cloudflare mu di area API : Contoh Zone ID => 123d56a89f123e5678901b34567890a2
 record_name="contoh.cloudflare.mu" #record yang kamu gunakan contoh : A Record : contoh.cloudflare.mu to 8.8.8.8
 proxy="false" #jadikan true jika menyalakan cloudflare proxy!
 
