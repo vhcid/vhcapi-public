@@ -1,5 +1,5 @@
 #!/bin/bash
-# Paper Installation Script
+# Paper 1.17 (Custom SMP) Installation Script
 #
 # Server Files: /mnt/server
 PROJECT=paper
