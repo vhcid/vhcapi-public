@@ -53,7 +53,7 @@ curl -o ${SERVER_JARFILE} ${DOWNLOAD_URL}
 
 if [ ! -f server.properties ]; then
     echo -e "Downloading MC server.properties"
-    curl -o server.properties https://image.vhcid.tech/minecraft-image/server.properties
+    curl -o server.properties https://image.vhcid.tech/${VHAPI_VERSION}/minecraft-image/server.properties
 fi
 
 mkdir plugins
