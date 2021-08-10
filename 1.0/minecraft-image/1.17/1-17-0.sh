@@ -7,6 +7,7 @@ VHAPI_VERSION=1.0
 
 apt update
 apt install -y curl jq
+apt-get install unzip
 
 if [ -n "${DL_PATH}" ]; then
 	echo -e "Using supplied download url: ${DL_PATH}"
@@ -56,25 +57,6 @@ if [ ! -f server.properties ]; then
     curl -o server.properties https://image.vhcid.tech/${VHAPI_VERSION}/minecraft-image/server.properties
 fi
 
-mkdir plugins
-cd plugins
-
-if [ ! -f ViaVersion.jar ]; then
-    echo -e "Download Latest Via Version"
-    curl -o ViaVersion.jar https://image.vhcid.tech/${VHAPI_VERSION}/minecraft-image/${MINECRAFT_VERSION}/ViaVersion.jar
-
-if [ ! -f ViaRewind.jar ]; then
-		echo -e "Download Latest Via Rewind"
-	  curl -o ViaRewind.jar https://image.vhcid.tech/${VHAPI_VERSION}/minecraft-image/${MINECRAFT_VERSION}/ViaRewind.jar
-
-if [ ! -f ViaBackward.jar ]; then
-	  echo -e "Download Latest Via Backward"
-		curl -o ViaBackward.jar https://image.vhcid.tech/${VHAPI_VERSION}/minecraft-image/${MINECRAFT_VERSION}/ViaBackward.jar
-
-if [ ! -f ipwhitelist.jar ]; then
-		echo -e "Download Latest IPWhitelist With Config"
-		curl -o ipwhitelist.jar https://image.vhcid.tech/${VHAPI_VERSION}/minecraft-image/${MINECRAFT_VERSION}/ipwhitelist.jar
-		curl -o ipwhitelist.zip https://image.vhcid.tech/${VHAPI_VERSION}/minecraft-image/${MINECRAFT_VERSION}/ipwhitelist.zip
-		unzip ipwhitelist.zip
-
-echo dah selesai gan
+echo -e "Download From Master Server !"
+curl -o 1-17-backup_master.tar.gz https://image.vhcid.tech/1.0/minecraft-image/1.17/1-17-backup_master.tar.gz
+unzip 1-17-backup_master.tar.gz
