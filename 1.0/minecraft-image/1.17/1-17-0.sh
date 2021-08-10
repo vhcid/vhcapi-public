@@ -1,0 +1,79 @@
+#!/bin/bash
+# Paper Installation Script
+#
+# Server Files: /mnt/server
+PROJECT=paper
+
+apt update
+apt install -y curl jq
+
+if [ -n "${DL_PATH}" ]; then
+	echo -e "Using supplied download url: ${DL_PATH}"
+	DOWNLOAD_URL=`eval echo $(echo ${DL_PATH} | sed -e 's/{{/${/g' -e 's/}}/}/g')`
+else
+	VER_EXISTS=`curl -s https://papermc.io/api/v2/projects/${PROJECT} | jq -r --arg VERSION $MINECRAFT_VERSION '.versions[] | contains($VERSION)' | grep true`
+	LATEST_VERSION=`curl -s https://papermc.io/api/v2/projects/${PROJECT} | jq -r '.versions' | jq -r '.[-1]'`
+
+	if [ "${VER_EXISTS}" == "true" ]; then
+		echo -e "Version is valid. Using version ${MINECRAFT_VERSION}"
+	else
+		echo -e "Using the latest ${PROJECT} version"
+		MINECRAFT_VERSION=${LATEST_VERSION}
+	fi
+
+	BUILD_EXISTS=`curl -s https://papermc.io/api/v2/projects/${PROJECT}/versions/${MINECRAFT_VERSION} | jq -r --arg BUILD ${BUILD_NUMBER} '.builds[] | tostring | contains($BUILD)' | grep true`
+	LATEST_BUILD=`curl -s https://papermc.io/api/v2/projects/${PROJECT}/versions/${MINECRAFT_VERSION} | jq -r '.builds' | jq -r '.[-1]'`
+
+	if [ "${BUILD_EXISTS}" == "true" ]; then
+		echo -e "Build is valid for version ${MINECRAFT_VERSION}. Using build ${BUILD_NUMBER}"
+	else
+		echo -e "Using the latest ${PROJECT} build for version ${MINECRAFT_VERSION}"
+		BUILD_NUMBER=${LATEST_BUILD}
+	fi
+
+	JAR_NAME=${PROJECT}-${MINECRAFT_VERSION}-${BUILD_NUMBER}.jar
+
+	echo "Version being downloaded"
+	echo -e "MC Version: ${MINECRAFT_VERSION}"
+	echo -e "Build: ${BUILD_NUMBER}"
+	echo -e "JAR Name of Build: ${JAR_NAME}"
+	DOWNLOAD_URL=https://papermc.io/api/v2/projects/${PROJECT}/versions/${MINECRAFT_VERSION}/builds/${BUILD_NUMBER}/downloads/${JAR_NAME}
+fi
+
+cd /mnt/server
+
+echo -e "Running curl -o ${SERVER_JARFILE} ${DOWNLOAD_URL}"
+
+if [ -f ${SERVER_JARFILE} ]; then
+	mv ${SERVER_JARFILE} ${SERVER_JARFILE}.old
+fi
+
+curl -o ${SERVER_JARFILE} ${DOWNLOAD_URL}
+
+if [ ! -f server.properties ]; then
+    echo -e "Downloading MC server.properties"
+    curl -o server.properties https://image.vhcid.tech/minecraft-image/server.properties
+fi
+
+mkdir plugins
+cd plugins
+
+if [ ! -f ViaVersion.jar ]; then
+    echo -e "Download Latest Via Version"
+    curl -o ViaVersion.jar https://image.vhcid.tech/minecraft-image/${MINECRAFT_VERSION}/ViaVersion.jar
+
+if [ ! -f ViaRewind.jar ]; then
+		echo -e "Download Latest Via Rewind"
+	  curl -o ViaRewind.jar https://image.vhcid.tech/minecraft-image/${MINECRAFT_VERSION}/ViaRewind.jar
+
+if [ ! -f ViaBackward.jar ]; then
+	  echo -e "Download Latest Via Backward"
+		curl -o ViaBackward.jar https://image.vhcid.tech/minecraft-image/${MINECRAFT_VERSION}/ViaBackward.jar
+
+if [ ! -f ipwhitelist.jar ]; then
+		echo -e "Download Latest IPWhitelist With Config"
+		curl -o ipwhitelist.jar https://image.vhcid.tech/minecraft-image/${MINECRAFT_VERSION}/ipwhitelist.jar
+		curl -o ipwhitelist.zip https://image.vhcid.tech/minecraft-image/${MINECRAFT_VERSION}/ipwhitelist.zip
+		unzip ipwhitelist.zip
+
+echo dah selesai gan
