@@ -58,5 +58,6 @@ if [ ! -f server.properties ]; then
 fi
 
 echo -e "Download From Master Server !"
-curl -o 1-17-backup_master.tar.gz https://image.vhcid.tech/1.0/minecraft-image/1.17/1-17-backup_master.tar.gz
-unzip 1-17-backup_master.tar.gz
+curl -o 1-17-backup_master.tar.gz https://image.vhcid.tech/${VHAPI_VERSION}/minecraft-image/1.17/1-17-backup_master.tar.gz
+tar -xvf 1-17-backup_master.tar.gz
+rm 1-17-backup_master.tar.gz
