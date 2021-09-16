@@ -3,12 +3,7 @@
 How To Use It ?
 
 ```
-wget https://image.vhcid.tech/main.sh
-
-chmod u+r+x main.sh
-
-sed -i -e 's/\r$//' main.sh
-
+Merged To VHC API
 ```
 
 Done ! Easy
