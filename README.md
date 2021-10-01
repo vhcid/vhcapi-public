@@ -1,4 +1,4 @@
-# VHC API Public Repositories
+# VHC API Public Repo
 
 ### What is VHC API ? 
 
